@@ -1,0 +1,33 @@
+
+
+{% extends 'addressbook/base.html' %}
+
+{% block title_block %}My Address Book - {{user.username}} {% endblock %}
+
+
+{% block body_block %}
+
+	<h3>Hello {{user.username}}, here's the list of your contacts.</h3>
+
+	<table class="table">
+		<thead>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Contact Number</th>
+			<th>Address</th>
+		</thead>
+		{% for contact in object_list %}
+			<tr>
+				<td style=>{{contact.first_name}}</td>
+				<td style=>{{contact.last_name}}</td>
+				<td style=> {{contact.contact_number}}</td>
+				<td style=>{{contact.address}}</td>
+				<td style=><a href="{% url 'contacts:update_contact' pk=contact.id %}">Update</a></td>
+				<td style=><a href="{% url 'contacts:delete_contact' pk=contact.id %}">Delete</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<a href="{% url 'contacts:create_contact' %}" class="btn btn-primary">Add New Contact</a>
+
+{% endblock %}

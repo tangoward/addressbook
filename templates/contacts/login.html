@@ -1,0 +1,19 @@
+
+{% extends 'addressbook/base.html' %}
+
+{% block title_block %}Login - My Address Book{% endblock %}
+
+{% block body_block %}
+
+	<h4>Enter username and password</h4>
+
+	<form method="POST">
+		{% csrf_token %}
+
+		{{form.as_p}}
+
+		<input type="submit" value="Login" class="btn btn-primary">
+	</form>
+
+
+{% endblock %}

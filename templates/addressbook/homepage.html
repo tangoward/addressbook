@@ -1,0 +1,15 @@
+
+
+{% extends 'addressbook/base.html' %}
+
+
+{% block title_block %}My Address Book - List of Contact Persons{% endblock %}
+
+
+{% block body_block %}
+	
+	<h3>Manage your contacts with My Address Book</h3>
+
+	<h4>Create an <a href="{% url 'contacts:signup' %}">account</a> to see how the application works.</h4>
+
+{% endblock %}

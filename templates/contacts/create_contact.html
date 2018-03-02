@@ -1,0 +1,18 @@
+
+{% extends 'addressbook/base.html' %}
+
+{% block title_block %}Add New Contact{% endblock %}
+
+{% block body_block %}
+	
+	<h3>Add New Contact</h3>
+
+	<form method="POST">
+		{% csrf_token %}
+
+		{{form.as_p}}
+
+		<input type="submit" value="Add New Contact" class="btn btn-success">
+	</form>
+
+{% endblock %}

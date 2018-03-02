@@ -1,0 +1,18 @@
+
+{% extends 'addressbook/base.html' %}
+
+
+{% block title_block %}Delete Contact From The List{% endblock %}
+
+
+{% block body_block %}
+	
+	<h3>Delete the contact of {{contact.first_name}}? All information will be deleted and cannot be retrieved.</h3>
+
+	<form method="POST">
+		{% csrf_token %}
+
+		<input type="submit" value="Yes, delete this contact." class="btn btn-success">
+	</form>
+
+{% endblock %}

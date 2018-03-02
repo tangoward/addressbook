@@ -1,0 +1,21 @@
+
+
+
+{% extends 'addressbook/base.html' %}
+
+
+{% block title_block %}Update Contact Details{% endblock %}
+
+
+{% block body_block %}
+	
+	<h3>Update Contact Information</h3>
+
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+
+		<input type="submit" value="Save" class="btn btn-success">
+	</form>
+
+{% endblock %}

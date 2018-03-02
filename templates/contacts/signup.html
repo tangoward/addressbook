@@ -1,0 +1,20 @@
+
+
+{% extends 'addressbook/base.html' %}
+
+
+{% block title_block %}My Address Book - Sign Up{% endblock %}
+
+{% block body_block %}
+
+	<h3>Register Here</h3>
+
+	<form method="POST">
+		{% csrf_token %}
+
+		{{ form.as_p }}
+
+		<input type="submit" value="Sign Up" class="btn btn-success">			
+	</form>
+
+{% endblock %}
