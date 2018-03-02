@@ -13,4 +13,5 @@ urlpatterns = [
     path('create/', views.CreateContact.as_view(), name='create_contact'),
     path('update/<int:pk>', views.UpdateContact.as_view(), name='update_contact'),
     path('delete/<int:pk>', views.DeleteContact.as_view(), name='delete_contact'),
+    path('csv/', views.CsvView.as_view(), name='csv_import'),
 ]

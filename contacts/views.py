@@ -7,8 +7,9 @@ from django.views.generic import (
     DeleteView,
 )
 from django.urls import reverse_lazy
-from .models import ContactPerson
-from .forms import UserCreateForm
+import csv
+from contacts.models import ContactPerson
+from contacts.forms import UserCreateForm
 # Create your views here.
 
 
@@ -24,6 +25,11 @@ class ProfileView(ListView):
     queryset = ContactPerson.objects.all()
 
     def get_queryset(self):
+        """
+        List all the contacts associated to the currently logged in user.
+
+        """
+
         return self.queryset.filter(contact_owner=self.request.user)
 
 
@@ -44,7 +50,7 @@ class CreateContact(CreateView):
         """
 
         form.instance.contact_owner = self.request.user
-        return super(CreateContact, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class UpdateContact(UpdateView):
@@ -59,3 +65,22 @@ class DeleteContact(DeleteView):
     context_object_name = 'contact'
     success_url = reverse_lazy('contacts:profile')
     template_name = 'contacts/delete_contact.html'
+
+
+# CSV
+class CsvView(TemplateView):
+    success_url = reverse_lazy('contacts:profile')
+    template_name = 'contacts/csv_read.html'
+
+    def post(self, request, *args, **kwargs):
+
+        new_csv = request.FILES['csv_file']
+
+        with open(new_csv) as csvfile:
+            readcsv = csv.reader(csvfile, delimiter=',')
+            header = readcsv.next()
+
+            for row in readcsv:
+                new_contact = ContactPerson.objects.create(first_name=row[0], last_name=row[1], contact_number=row[2], address=row[3])
+
+        return new_contact

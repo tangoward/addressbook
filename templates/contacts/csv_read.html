@@ -1,0 +1,26 @@
+
+
+
+{% extends 'addressbook/base.html' %}
+
+
+{% block title_block %}Add Contacts Using CSV File{% endblock %}
+
+
+{% block body_block %}
+	
+	<h3>Upload CSV to add contacts</h3>
+
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		<input type="file" name="csv_file" />
+
+		<input type="submit" value="Add Contacts" />
+		
+
+	</form>
+
+	<a href="{% url 'contacts:profile' %}" class="btn btn-primary">Back</a>
+
+{% endblock %}
